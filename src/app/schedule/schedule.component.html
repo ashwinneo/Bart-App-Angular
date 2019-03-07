@@ -1,0 +1,74 @@
+<div class="container-fluid">
+  <div class="row mt-3" *ngIf="isError">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Source and Destination are same!!!</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-sm-4">
+       <div class="col-sm-1">
+          <span>Source</span>
+        </div>
+        <div class="col-sm-9">
+          <select class="form-control" name="from" [(ngModel)]="source" (change)="selectSource(source)">
+            <option value="" disabled>Select Source</option>
+            <option *ngFor="let array of finalArray" [id]="array.id" [value]="array.id">{{array.name}}</option>
+          </select>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="col-sm-1">
+           <span>Destination</span>
+         </div>
+         <div class="col-sm-9">
+           <select class="form-control" name="from" [(ngModel)]="destination" (change)="selectDestination(destination)"  [disabled]="isDisabled">
+            <option value="" disabled>Select Source</option> 
+            <option *ngFor="let array of finalArray" [id]="array.id" [value]="array.id">{{array.name}}</option>
+           </select>
+         </div>
+     </div>
+     <div class="col-sm-4">
+       <div class="col-sm-12 mt-4">
+          <button class="btn btn-primary form-control" (click)="searchSchedule()" [disabled]="isbtnDisabled">Search</button>
+       </div>
+     </div>
+  </div>
+  <div class="row mt-3" *ngIf="scheduleArray1.length > 0"> 
+    <div class="col-sm-12">
+        <div class="container">
+            <h2>Schedule</h2>
+            <ul class="responsive-table">
+              <li class="table-header">
+                <div class="col col-2">Departure Time</div>
+                <div class="col col-2">Price</div>
+                <div class="col col-2">Arrival Time</div>
+              </li>
+              <li class="table-row" *ngFor="let data of scheduleArray1">
+                <div class="col col-2" data-label="Job Id">{{data.departTime}}</div>
+                <div class="col col-2" data-label="Customer Name">$ {{data.fare}}</div>
+                <div class="col col-2" data-label="Amount">{{data.arrivalTime}}</div>
+              </li>
+            </ul>
+          </div>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col-sm-2"> </div>
+    <div class="col-sm-9">
+        <app-google-maps *ngIf="mapArray.length > 0" [mapArray]="this.mapArray"></app-google-maps>
+      </div>
+  </div>
+  <ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-scale-multiple">
+ <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+</div>
