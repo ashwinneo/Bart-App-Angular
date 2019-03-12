@@ -12,10 +12,13 @@ export class GoogleMapsComponent implements OnInit {
   @Input("mapArray") mapArray;
   origin: any;
   destination: any;
+  travelMode: String;
+  mapTypeId: String;
   ngOnInit() {
     console.log(this.mapArray);
-    // this.origin = this.mapArray[0].origin;
-    // this.destination = this.mapArray[1].destination;
+    this.origin = this.mapArray[0];
+    this.destination = this.mapArray[1];
+    this.travelMode = "TRANSIT";
   }
   lat: number = 37.752470;
   lng: number = -122.418143;

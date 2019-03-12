@@ -1,13 +1,29 @@
 <div class="container-fluid">
-  <div class="row mt-3" *ngIf="isError">
-    <div class="col-sm-4"></div>
+  <div class="row mt-3">
     <div class="col-sm-4">
+    </div>
+    <div class="col-sm-4" *ngIf="isTimeLeft">
+      <div class="row">
+          <div class="col-sm-12">
+              <div class="alert alert-danger" role="alert">
+                <div class="text-center"><countdown  (change)="doSomething($event)" style="font-size: 20px; font-weight: bold; color: red;" *ngIf="nextTrain.leftTime !=0 " [config]="nextTrain">$!h!:$!m!</countdown></div>
+              </div>
+          </div>
+      </div>
+    </div>
+    <div class="col-sm-4" *ngIf="isError">
       <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <strong>Source and Destination are same!!!</strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+    </div>
+    <div class="col-sm-4" *ngIf="isCount">
+        <div class="alert alert-info">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <span>You have visited me </span> <strong>{{counts}} </strong><span> times.</span>
+        </div>
     </div>
   </div>
   <div class="row mt-5">
@@ -28,7 +44,7 @@
          </div>
          <div class="col-sm-9">
            <select class="form-control" name="from" [(ngModel)]="destination" (change)="selectDestination(destination)"  [disabled]="isDisabled">
-            <option value="" disabled>Select Source</option> 
+            <option value="" disabled>Select Destination</option> 
             <option *ngFor="let array of finalArray" [id]="array.id" [value]="array.id">{{array.name}}</option>
            </select>
          </div>
@@ -58,10 +74,10 @@
           </div>
     </div>
   </div>
-  <div class="row mt-5">
+  <div class="row mt-5 mb-3">
     <div class="col-sm-2"> </div>
     <div class="col-sm-9">
-        <app-google-maps *ngIf="mapArray.length > 0" [mapArray]="this.mapArray"></app-google-maps>
+        <app-google-maps *ngIf="showMap" [mapArray]="this.mapArray"></app-google-maps>
       </div>
   </div>
   <ngx-spinner

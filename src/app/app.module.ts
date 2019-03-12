@@ -14,6 +14,7 @@ import { GoogleMapsComponent } from './google-maps/google-maps.component';
 import { AgmCoreModule } from '@agm/core';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AgmDirectionModule } from 'agm-direction';
+import { CountdownModule } from 'ngx-countdown';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +33,8 @@ import { AgmDirectionModule } from 'agm-direction';
       apiKey: 'AIzaSyDaYQRdZCQAhvwSuwZohDjfOY3HHdGXc4M'
     }),
     NgxSpinnerModule,
-    AgmDirectionModule
+    AgmDirectionModule,
+    CountdownModule
   ],
   providers: [BartStationsServiceService],
   bootstrap: [AppComponent]

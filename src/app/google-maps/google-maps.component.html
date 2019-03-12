@@ -1,5 +1,5 @@
 <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
-            <agm-marker 
+            <!-- <agm-marker 
                 *ngFor="let m of mapArray; let i = index"
                 (markerClick)="clickedMarker(m.label, i)"
                 [latitude]="m.lat"
@@ -7,6 +7,6 @@
                 [label]="m.label"
                 [markerDraggable]="m.draggable"
                 (dragEnd)="markerDragEnd(m, $event)">
-            </agm-marker>
-            <!-- <agm-direction *ngFor="let m of mapArray" [origin]="m.origin" [destination]="m.destination"></agm-direction> -->
+            </agm-marker> -->
+            <agm-direction [origin]="origin" [destination]="destination" [travelMode]="travelMode"></agm-direction>
 </agm-map>
